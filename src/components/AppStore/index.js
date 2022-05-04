@@ -293,24 +293,38 @@ const appsList = [
 ]
 
 class AppStore extends Component {
-  state = {tabItem: tabsList[0]}
+  state = {tabItem: tabsList[0], searchInput: ''}
 
   updateTabState = id => {
     const newTabItem = tabsList.filter(eachTab => eachTab.tabId === id)
     this.setState({tabItem: newTabItem[0]})
   }
 
+  getSearchedApp = event => {
+    const userSearchInput = event.target.value
+    this.setState({searchInput: userSearchInput})
+  }
+
   render() {
-    const {tabItem} = this.state
-    console.log(tabItem)
+    const {tabItem, searchInput} = this.state
     const filteredAppList = appsList.filter(
       eachApp => tabItem.tabId === eachApp.category,
     )
+    const searchedAppList = filteredAppList.filter(eachApp =>
+      eachApp.appName.toLowerCase().includes(searchInput),
+    )
+
+    console.log(searchedAppList)
     return (
       <div className="bg-container">
         <h1>App Store</h1>
         <div className="search-bar-container">
-          <input type="search" className="search-bar" placeholder="Search..." />
+          <input
+            type="search"
+            className="search-bar"
+            placeholder="Search..."
+            onChange={this.getSearchedApp}
+          />
           <img
             src="https://assets.ccbp.in/frontend/react-js/app-store/app-store-search-img.png"
             alt="search icon"
@@ -328,7 +342,7 @@ class AppStore extends Component {
         </ul>
         <hr className="break-line" />
         <ul className="app-list-container">
-          {filteredAppList.map(eachApp => (
+          {searchedAppList.map(eachApp => (
             <AppItem appsList={eachApp} key={eachApp.appId} />
           ))}
         </ul>
