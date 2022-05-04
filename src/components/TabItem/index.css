@@ -1,14 +1,27 @@
 .list-item {
+  width: 80px;
   list-style-type: none;
-  margin-right: 8px;
-  margin-left: 8px;
-  text-decoration: underline;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 8px;
 }
 
 .tab-button {
   font-size: 18px;
   font-weight: 600;
   background-color: transparent;
-  border-style: none;
+  padding-bottom: 10px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-width: 1px;
   color: #7b8794;
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+.tab-highlight {
+  color: #2563eb;
+  border-color: #2563eb;
+  border-width: 2px;
 }

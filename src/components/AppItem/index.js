@@ -5,10 +5,8 @@ const AppItem = props => {
   const {appName, imageUrl} = appsList
   return (
     <li className="app-list-item">
-      <button type="button" className="app-button">
-        <img src={imageUrl} alt={appName} className="app-logo" />
-        <p className="app-name">{appName}</p>
-      </button>
+      <img src={imageUrl} alt={appName} className="app-logo" />
+      <p className="app-name">{appName}</p>
     </li>
   )
 }

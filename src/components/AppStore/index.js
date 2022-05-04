@@ -311,10 +311,9 @@ class AppStore extends Component {
       eachApp => tabItem.tabId === eachApp.category,
     )
     const searchedAppList = filteredAppList.filter(eachApp =>
-      eachApp.appName.toLowerCase().includes(searchInput),
+      eachApp.appName.toLowerCase().includes(searchInput.toLowerCase()),
     )
 
-    console.log(searchedAppList)
     return (
       <div className="bg-container">
         <h1>App Store</h1>
@@ -337,10 +336,10 @@ class AppStore extends Component {
               tabsList={eachTab}
               key={eachTab.tabId}
               updateTabState={this.updateTabState}
+              isTabSelected={eachTab.tabId === tabItem.tabId}
             />
           ))}
         </ul>
-        <hr className="break-line" />
         <ul className="app-list-container">
           {searchedAppList.map(eachApp => (
             <AppItem appsList={eachApp} key={eachApp.appId} />
